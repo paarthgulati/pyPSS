@@ -21,10 +21,10 @@ def main():
     system.create_field('phi', k_list, k_grids, dynamic=True)
     system.create_field('mu', k_list, k_grids, dynamic=False)
 
-
     # Initial Conditions
     system.get_field('phi').set_real(0.1*(np.random.rand(*grid_size)-1))
-   
+    system.get_field('phi').synchronize_momentum()
+
     system.create_term("phi", [("mu", 1)], [-1, 1])
     system.create_term("mu", [("phi", 1)], [-1, 0])
     system.create_term("mu", [("phi", 3)], [1, 0])
