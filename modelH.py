@@ -31,6 +31,7 @@ def main():
 
     # Initial Conditions
     system.get_field('phi').set_real(0.1*(np.random.rand(*grid_size)-1))
+    system.get_field('phi').synchronize_momentum()
     
     
     system.create_term("phi", [("mu", 1)], [-1, 1, 0, 0, 0])
